@@ -67,7 +67,7 @@ logs:
 	fi
 
 # test the api
-test_api:
+tests:
 	@if docker ps -a --format '{{.Names}}' | grep -q $(CONTAINER_NAME); then \
 		echo "Testing Container $(CONTAINER_NAME)..."; \
 		docker exec $(CONTAINER_NAME) pipenv run pytest ./test;\
