@@ -23,6 +23,8 @@ jobs:
     environment: deploy
     runs-on: ubuntu-latest
     steps:
+      - name: echo
+        run: echo ${{ secrets.DOCKER_HUB_USERNAME }}
       - name: Check out the repo
         uses: actions/checkout@v4
 
