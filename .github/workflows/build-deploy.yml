@@ -1,11 +1,11 @@
 name: test
 on:
     workflow_run:
-        workflows: ["build-test-deploy.yml"]
+        workflows: ["build-test.yml"]
         types:
             - completed
 jobs: 
   test-job:
     runs-on: ubuntu-latest
     steps: 
-        - run: echo "this should not run"
+        - run: echo "hello world"
