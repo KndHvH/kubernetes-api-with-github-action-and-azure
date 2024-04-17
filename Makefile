@@ -3,7 +3,6 @@ IMAGE_NAME := api_img
 CONTAINER_NAME := api
 API_PORT := 8000
 
-
 # Build the Docker image
 build:
 	@if docker images -q $(IMAGE_NAME) | grep -q .; then \
