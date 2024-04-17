@@ -70,7 +70,7 @@ logs:
 tests:
 	@if docker ps -a --format '{{.Names}}' | grep -q $(CONTAINER_NAME); then \
 		echo "Testing Container $(CONTAINER_NAME)..."; \
-		docker exec $(CONTAINER_NAME) pipenv run pytest ./test;\
+		docker exec $(CONTAINER_NAME) pipenv run pytest -vv ./test;\
 	else \
 		echo "Container $(CONTAINER_NAME) does not exist"; \
 	fi
