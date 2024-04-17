@@ -2,6 +2,7 @@ name: deploy
 on: push
 jobs: 
   test-job:
+    name: Test project
     runs-on: ubuntu-latest
     steps: 
         - name: Check out repository code
@@ -14,9 +15,29 @@ jobs:
           run: make run
         - name: Run tests
           run: make tests
-          
-  deploy-job:
+
+
+  push_to_registry:
     needs: test-job
+    name: Push Docker image to Docker Hub
+    environment: deploy
     runs-on: ubuntu-latest
-    steps: 
-        - run: echo "hello world"
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1 
+        with:
+            username: ${{ secrets.DOCKER_HUB_USERNAME }}
+            password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/api_img:latest
+
+
+
