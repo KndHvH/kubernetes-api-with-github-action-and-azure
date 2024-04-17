@@ -2,8 +2,6 @@
 IMAGE_NAME := api_img
 CONTAINER_NAME := api
 API_PORT := 8000
-AZURE_RESOURCE_GROUP:= rec
-AZURE_LOCATION:= eastus
 
 # Build the Docker image
 build:
@@ -75,3 +73,4 @@ tests:
 	else \
 		echo "Container $(CONTAINER_NAME) does not exist"; \
 	fi
+
