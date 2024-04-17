@@ -14,22 +14,13 @@ spec:
     spec:
       containers:
       - name: api
-        image: kndhvh/api_image:latest
+        image: kndhvh/api_img:latest
         ports:
         - containerPort: 8000
         resources:
-        requests:
-          cpu: "100m"
-          memory: "100Mi"
-        limits:
-          cpu: "200m"
-          memory: "200Mi"
-        imagePullPolicy: Always
-        readinessProbe:
-          httpGet:
-            path: /health-check
-            port: 8000
-        livenessProbe:
-          httpGet:
-            path: /health-check
-            port: 8000
+          requests:
+            cpu: "100m"
+            memory: "100Mi"
+          limits:
+            cpu: "200m"
+            memory: "200Mi"
