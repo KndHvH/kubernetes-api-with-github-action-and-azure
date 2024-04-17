@@ -37,4 +37,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/api_img:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/api_img:latest
