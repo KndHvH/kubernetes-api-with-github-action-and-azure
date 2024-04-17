@@ -1,0 +1,17 @@
+name: test
+on: push
+jobs: 
+  test-job:
+    runs-on: ubuntu-latest
+    steps: 
+        - name: Check out repository code
+          uses: actions/checkout@v3
+        - name: Set up Python
+          uses: actions/setup-python@v5
+          with:
+            python-version: '3.10' 
+        - run: echo "$(cat hello_world.txt)"
+        - name: Run tests
+          run: |
+            pip install pytest
+            pytest ./path_to_your_test_folder/
