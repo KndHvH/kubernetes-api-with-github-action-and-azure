@@ -7,6 +7,8 @@ name = "pypi"
 pytest = "*"
 fastapi = "*"
 uvicorn = "*"
+httpx = "*"
+requests = "*"
 
 [dev-packages]
 

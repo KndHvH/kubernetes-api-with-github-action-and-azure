@@ -19,7 +19,7 @@ build:
 run:
 	@if docker ps -a --format '{{.Names}}' | grep -q $(CONTAINER_NAME); then \
 		echo "Container $(CONTAINER_NAME) is already running"; \
-		make stop; \
+		make clean; \
 	fi
 	@if docker images -q $(IMAGE_NAME) | grep -q .; then \
 		echo "Running Container $(CONTAINER_NAME)...";\
