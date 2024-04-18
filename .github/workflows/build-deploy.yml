@@ -62,3 +62,6 @@ jobs:
 
       - name: Apply to AKS
         run: kubectl apply -f kubernetes/
+
+      - name: Restart pods
+        run: kubectl rollout restart deployment
