@@ -15,6 +15,6 @@ def test_api_route():
     url = "http://127.0.0.1:8000/health-check" 
     response = requests.get(url)
     assert response.status_code == 200
-    assert response.json() == {"message": "testing"}
+    assert response.json() == {"message": "OK"}
     
     

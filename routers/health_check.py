@@ -4,4 +4,4 @@ router = APIRouter()
 
 @router.get("/health-check")
 def app_check():
-    return {"message":"testing"}
+    return {"message":"OK"}
