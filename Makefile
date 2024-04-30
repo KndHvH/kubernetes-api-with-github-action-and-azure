@@ -11,7 +11,7 @@ build:
 		make build; \
 	else \
 		echo "Building Image $(IMAGE_NAME)...";\
-		docker build -t $(IMAGE_NAME) .;\
+		docker build --target development -t $(IMAGE_NAME) .;\
 	fi
 
 # Run the Docker container
@@ -22,7 +22,7 @@ run:
 	fi
 	@if docker images -q $(IMAGE_NAME) | grep -q .; then \
 		echo "Running Container $(CONTAINER_NAME)...";\
-		docker run -d -p $(API_PORT):$(API_PORT) --name $(CONTAINER_NAME) $(IMAGE_NAME) ; \
+		docker run -d -p $(API_PORT):$(API_PORT) --name $(CONTAINER_NAME) $(IMAGE_NAME) python run.py; \
 	else \
 		echo "Image $(IMAGE_NAME) does not exist"; \
 		make build; \
@@ -62,15 +62,15 @@ logs:
 		echo "Showing Logs from Container $(CONTAINER_NAME)..."; \
 		docker logs $(CONTAINER_NAME);\
 	else \
-		echo "Container $(CONTAINER_NAME) does not exist"; \
+		echo "Container $(CONTAINER_NAME) does not exist or not running"; \
 	fi
 
 # test the api
 tests:
-	@if docker ps -a --format '{{.Names}}' | grep -q $(CONTAINER_NAME); then \
+	@if docker ps --format '{{.Names}}' | grep -q $(CONTAINER_NAME); then \
 		echo "Testing Container $(CONTAINER_NAME)..."; \
 		docker exec $(CONTAINER_NAME) pipenv run pytest -vv ./test;\
 	else \
-		echo "Container $(CONTAINER_NAME) does not exist"; \
+		echo "Container $(CONTAINER_NAME) not running"; \
 	fi
 
