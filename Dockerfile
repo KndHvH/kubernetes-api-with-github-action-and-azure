@@ -1,10 +1,20 @@
-FROM python:3.10
+FROM python:3.10 as base
 
-COPY . .
+WORKDIR /app
 
-RUN pip install pipenv
-RUN pipenv install
 
 EXPOSE 8000
 
-CMD ["pipenv","run","uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
+COPY Pipfile .
+RUN pip install pipenv
+
+FROM base AS dependencies
+RUN pipenv install --system --skip-lock
+
+FROM base AS development
+RUN pipenv install --system --dev --skip-lock
+COPY . .
+
+FROM dependencies AS production
+COPY app app
+COPY run.py .

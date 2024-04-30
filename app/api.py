@@ -1,8 +1,8 @@
 
 
 from fastapi import FastAPI
-from routers import health_check
-from routers import root
+from app.routers import health_check
+from app.routers import root
 
 app = FastAPI()
 

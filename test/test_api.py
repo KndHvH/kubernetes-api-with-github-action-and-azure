@@ -7,7 +7,7 @@ def test_fastapi_import():
     assert FastAPI
 
 def test_health_check_import():
-    from routers import health_check
+    from app.routers import health_check
     assert health_check
     
 def test_api_route():

@@ -5,4 +5,4 @@ router = APIRouter()
 
 @router.get("/")
 def root():
-    return RedirectResponse(url="/health-check")
+    return RedirectResponse(url="/docs")
