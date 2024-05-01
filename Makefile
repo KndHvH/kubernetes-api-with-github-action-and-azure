@@ -74,3 +74,11 @@ tests:
 		echo "Container $(CONTAINER_NAME) not running"; \
 	fi
 
+
+diagram:
+	@if docker ps --format '{{.Names}}' | grep -q $(CONTAINER_NAME); then \
+		echo "Generating Diagram..."; \
+		docker exec $(CONTAINER_NAME) pipenv run python .docs/diagrams/diagram.py;\
+	else \
+		echo "Container $(CONTAINER_NAME) not running"; \
+	fi
