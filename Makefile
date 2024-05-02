@@ -76,9 +76,7 @@ tests:
 
 
 diagram:
-	@if docker ps --format '{{.Names}}' | grep -q $(CONTAINER_NAME); then \
-		echo "Generating Diagram..."; \
-		docker exec $(CONTAINER_NAME) pipenv run python .docs/diagrams/diagram.py;\
-	else \
-		echo "Container $(CONTAINER_NAME) not running"; \
-	fi
+	pip install diagram; \
+	sudo apt-get update && sudo apt-get install graphviz; \
+	python .docs/diagrams/diagram.py;\
+

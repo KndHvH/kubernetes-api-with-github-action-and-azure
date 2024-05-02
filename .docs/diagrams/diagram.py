@@ -1,6 +1,7 @@
 from diagrams import Diagram
+from diagrams import Cluster
 
-from diagrams.onprem.client import Users, User
+from diagrams.onprem.client import Users
 from diagrams.onprem.vcs import Github
 from diagrams.onprem.container import Docker
 from diagrams.azure.compute import KubernetesServices
@@ -17,13 +18,13 @@ with Diagram(
  
     
     users = Users("User")
-        
-    image_registry = Docker("Docker HUB")
-        
-    container = KubernetesServices("AKS")
-        
-    github = Github("Actions")
     
-    dev = User("Dev")
+    with Cluster("API"):
+        image_registry = Docker("Docker HUB")
+            
+        container = KubernetesServices("AKS")
+            
+        github = Github("Actions")
+    
 
-    users >> container << image_registry << github << dev
+    users >> container << image_registry << github 
